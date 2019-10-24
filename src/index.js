@@ -6,6 +6,11 @@ const winningStyle = {
   color: 'green',
 }
 
+const boldStyle = {
+  'font-weight': 'bold',
+}
+
+
 function Square (props) {
     return (
       <button 
@@ -122,7 +127,7 @@ class Game extends React.Component {
       'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)} style={this.state.stepNumber == move ? boldStyle : null}>{desc}</button>
         </li>
         );
      });
