@@ -85,6 +85,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const gameIsNotOver = canContinuePlaying(current.squares);
 
     const moves = history.map( (step, move) => {
       const desc = move ?
@@ -100,9 +101,11 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = 'Winner:' + winner;
-    } else {
+    } else  if (gameIsNotOver)  {
       status = 'Next player:' + (this.state.xIsNext ? 'X':'O')
-    }
+    } else{
+      status = 'Game over!'
+    } 
 
     return (
       <div className="game">
@@ -148,4 +151,28 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+// To implement feature: "When no one wins, display a message about the result being a draw"
+function canContinuePlaying(squares) {
+  for (let i = 0; i < squares.length; i++) {
+    if (!squares[i])
+      return true;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
